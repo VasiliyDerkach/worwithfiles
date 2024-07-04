@@ -24,10 +24,18 @@ class WordsFinder:
         return all_words
     def find(self, word):
         dct = {}
-        for key_file, words_of_file in self.get_all_words():
-            i_word= words_of_file.index(word.lower())
+        alld = self.get_all_words()
+        for key_file, words_of_file in alld.items():
+            i_word = 0
+            if word.lower() in words_of_file:
+                i_word= words_of_file.index(word.lower())
             if i_word>=0:
                 dct[key_file]=i_word
+        return dct
+    def count(self, word):
+        dct = {}
+        for key_file, words_of_file in self.get_all_words().items():
+            dct[key_file]=words_of_file.count(word.lower())
         return dct
 
 
@@ -35,9 +43,8 @@ class WordsFinder:
 if __name__== '__main__':
     tst = WordsFinder('abra.txt','cadabra.txt')
     dct = tst.get_all_words()
-    g= ['gg','oo1t','tyu','oot']
-    print(g.index('oot'))
-    #print(dct)
-    # for u in tst.file_names:
-    #     print(u)
-    #
+    print(dct,dct['cadabra.txt'].count('пусть'))
+    dct = tst.find('Чаполино')
+    print(dct)
+    dct = tst.count('пусть')
+    print(dct)
