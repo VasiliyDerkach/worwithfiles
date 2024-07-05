@@ -23,3 +23,4 @@ elif time_avg1>time_avg2:
     print('Победа команды Волшебники Данных!')
 else:
     print('Ничья!')
+pass
