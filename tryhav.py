@@ -3,32 +3,33 @@ def personal_sum(numbers):
     sum = 0
     for a in numbers:
         try:
-            if str(int(a))==a:
-                a1 = int(a)
-            else:
-                a1 = a
-            sum+= a1
+            # if str(int(a))==a:
+            #     a1 = int(a)
+            # else:
+            #     a1 = a
+            sum+= a
         except TypeError:
-            try:
-                if str(float(a)) == a:
-                    a1 = float(a)
-                    sum += a1
-            except:
-                incorrect_data+= 1
-        except ValueError:
-            try:
-                if str(float(a)) == a:
-                    a1 = float(a)
-                    sum += a1
-            except:
-                incorrect_data+= 1
+            # try:
+            #     if str(float(a)) == a:
+            #         a1 = float(a)
+            #         sum += a1
+            # except:
+            incorrect_data+= 1
+            print(f'Некорректный тип данных для подсчёта суммы -{a}')
+        # except ValueError:
+        #     try:
+        #         if str(float(a)) == a:
+        #             a1 = float(a)
+        #             sum += a1
+        #     except:
+        #         incorrect_data+= 1
 
     return (sum, incorrect_data)
 def calculate_average(numbers):
     try:
         sums = personal_sum(numbers)
-        sum = sums[1]
-        return sum/len(numbers)
+        sum = sums[0]
+        return sum/(len(numbers)-sums[1])
     except ZeroDivisionError:
         return 0
     except TypeError as exx:
